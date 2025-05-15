@@ -14,4 +14,4 @@ export type GameBoardContextType = {
   setGameBoard: React.Dispatch<React.SetStateAction<GameBoardType>>;
 }
 
-export type StatusType = "X to move." | "O to move." | "X wins." | "O wins." | "Draw."
+export type StatusType = `${TurnType} to move.` | `${TurnType} wins.` | "Draw."
