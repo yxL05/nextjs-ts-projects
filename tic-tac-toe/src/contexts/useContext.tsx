@@ -1,5 +1,5 @@
-import { GameBoardContext, TurnContext } from "@/contexts/initContexts";
-import { GameBoardContextType, TurnContextType } from "@/types/logic";
+import { GameBoardContext, TurnContext, WinContext } from "@/contexts/initContexts";
+import { GameBoardContextType, TurnContextType, WinContextType } from "@/types/logic";
 import { Context, useContext } from "react";
 
 /**
@@ -19,3 +19,4 @@ function createContextAPI<T>(context: Context<T | undefined>, name: string) {
 
 export const useGameBoard = createContextAPI<GameBoardContextType>(GameBoardContext, "useGameBoard");
 export const useTurn = createContextAPI<TurnContextType>(TurnContext, "useTurn");
+export const useWin = createContextAPI<WinContextType>(WinContext, "useWin");

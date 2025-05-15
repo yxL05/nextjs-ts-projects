@@ -12,6 +12,13 @@ export type GameBoardType = ValueType[];
 export type GameBoardContextType = {
   gameBoard: GameBoardType;
   setGameBoard: React.Dispatch<React.SetStateAction<GameBoardType>>;
-}
+};
 
-export type StatusType = `${TurnType} to move.` | `${TurnType} wins.` | "Draw."
+export type StatusType = `${TurnType} to move.` | `${TurnType} wins.` | "Draw.";
+
+export type WinType = "" | "X" | "O" | "Draw";
+
+export type WinContextType = {
+  win: WinType;
+  setWin: React.Dispatch<React.SetStateAction<WinType>>;
+}

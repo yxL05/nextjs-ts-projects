@@ -1,6 +1,6 @@
 "use client"
 
-import { useGameBoard, useTurn } from "@/contexts/useContext";
+import { useGameBoard, useTurn, useWin } from "@/contexts/useContext";
 import { StatusType } from "@/types/logic";
 import { JSX, useEffect, useState } from "react";
 
@@ -10,29 +10,25 @@ type GameStatusProps = {
 
 export default ({ className = "" }: GameStatusProps): JSX.Element => {
   const [status, setStatus] = useState<StatusType>("X to move.");
-
-  const WIN_CONS = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    [0, 4, 8], [2, 4, 6]
-  ]
-
+  const {win, setWin} = useWin();
   const {turn, setTurn} = useTurn();
-  const {gameBoard, setGameBoard} = useGameBoard();
 
   useEffect(() => {
-    for (const [a, b, c] of WIN_CONS) {
-      if (gameBoard[a] !== "" &&
-        gameBoard[a] === gameBoard[b] &&
-        gameBoard[b] === gameBoard[c]
-      ) {
-        setStatus(`${gameBoard[a]} wins.`);
-        return;
-      }
+    switch (win) {
+      case "X":
+        setStatus("X wins.");
+        break;
+      case "O":
+        setStatus("O wins.");
+        break;
+      case "Draw":
+        setStatus("Draw.");
+        break;
+      default:
+        setStatus(`${turn} to move.`);
+        break;
     }
-
-    setStatus(`${turn} to move.`);
-  }, [turn, gameBoard]
+  }, [win, turn]
   );
 
   return (
